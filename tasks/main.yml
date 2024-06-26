@@ -1,0 +1,16 @@
+---
+
+- name: ensure tasks run only on selected os releases
+  block:
+
+    - name: enable rpm fusion repositories
+      ansible.builtin.dnf:
+        name:
+          - https://mirrors.rpmfusion.org/free/{{ ansible_distribution | lower }}/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
+          - https://mirrors.rpmfusion.org/nonfree/{{ ansible_distribution | lower }}/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
+        state: present
+        disable_gpg_check: true
+
+  when: ansible_distribution == "Fedora"
+
+...
