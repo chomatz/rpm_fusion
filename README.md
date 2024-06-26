@@ -17,7 +17,7 @@ ansible role for enabling rpm fusion repositories
   tasks:
 
     - name: enable rpm fusion repositories
-      include_role:
+      ansilbe.builtin.include_role:
         name: rpm_fusion
 
 ...
