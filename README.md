@@ -1,9 +1,13 @@
 # rpm_fusion
 ansible role for enabling rpm fusion repositories
-# requirements
-# variables
-# dependencies
-# examples
+
+## requirements
+
+## variables
+
+## dependencies
+
+## examples
 ```
 ---
 
