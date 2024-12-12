@@ -3,7 +3,7 @@
 - name: ensure tasks run only on selected os releases
   block:
 
-    - name: enable rpm fusion repositories
+    - name: install rpm fusion repositories
       ansible.builtin.dnf:
         name:
           - https://mirrors.rpmfusion.org/free/{{ ansible_distribution | lower }}/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
