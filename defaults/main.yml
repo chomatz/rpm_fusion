@@ -1,0 +1,7 @@
+---
+
+rpmfusion_repo:
+  - https://mirrors.rpmfusion.org/free/{{ ansible_distribution | lower }}/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
+  - https://mirrors.rpmfusion.org/nonfree/{{ ansible_distribution | lower }}/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
+
+...

@@ -13,13 +13,20 @@
         cmd: dnf config-manager setopt fedora-cisco-openh264.enabled=1
       when: ansible_distribution_major_version >= "41"
 
-    - name: install rpm fusion repositories
-      ansible.builtin.dnf:
-        name:
-          - https://mirrors.rpmfusion.org/free/{{ ansible_distribution | lower }}/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
-          - https://mirrors.rpmfusion.org/nonfree/{{ ansible_distribution | lower }}/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
-        state: present
-        disable_gpg_check: true
+    - name: fix for libdnf issues when installing via urls
+      block:
+
+        - name: install rpm fusion repositories
+          ansible.builtin.dnf:
+            name: "{{ rpmfusion_repo }}"
+            state: present
+            disable_gpg_check: true
+
+      rescue:
+
+        - name: install rpm fusion repositories via dnf
+          ansible.builtin.command:
+            cmd: "dnf install -y {{ rpmfusion_repo | join(' ') }}"
 
   when: ansible_distribution == "Fedora"
 
